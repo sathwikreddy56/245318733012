@@ -37,35 +37,35 @@
     <summary>Login</summary>
     <p>1. Add username and password in the body of the query in raw json format. We wil then get a authorization token as a response</p>
     <p>2. The endpoint to Login is : <b>POST</b> >>localhost:3000/login/ </p>
-    <img src="/screenshots/login.png?raw=true">
+    <img src="/MP1/screenshots/login.png?raw=true">
 </details>
 <details>
     <summary>Fetching details of all Hospitals</summary>
     <p>1. Copy the token from the login query result.</p>
     <p>2. Add the token to the headers with key as Authorization and valuse as *Bearer $token*.</p>
     <p>3. The endpoint to get the List of all Hospitals is : <b>GET</b> >>localhost:3000/api/HospitalList</p>
-    <img src="/screenshots/HospitalList.png?raw=true">
+    <img src="/MP1/screenshots/HospitalList.png?raw=true">
 </details>
 <details>
     <summary>Fetching details of all Ventilators</summary>
     <p>1. Copy the token from the login query result.</p>
     <p>2. Add the token to the headers with key as Authorization and valuse as *Bearer $token*.</p>
     <p>3. The endpoint to get the List of all Ventilators is : <b>GET</b> >>localhost:3000/api/VentilatorList</p>
-    <img src="/screenshots/VentilatorsList.png?raw=true">
+    <img src="/MP1/screenshots/VentilatorsList.png?raw=true">
 </details>
 <details>
     <summary>Fetching details of Ventilators with Status and Hospital Name as Parameters</summary>
     <p>1. Copy the token from the login query result.</p>
     <p>2. Add the token to the headers with key as Authorization and valuse as *Bearer $token*.</p>
     <p>3. The endpoint to search for Ventilators with Status and Hospital Name is : <b>GET</b> >>localhost:3000/api/Ventilator/status/hospital_name</p>
-    <img src="/screenshots/Vent_stat_HN.png?raw=true">
+    <img src="/MP1/screenshots/Vent_stat_HN.png?raw=true">
 </details>
 <details>
     <summary>Fetching details of Hospital with Hospital Name as Parameters</summary>
     <p>1. Copy the token from the login query result.</p>
     <p>2. Add the token to the headers with key as Authorization and valuse as *Bearer $token*.</p>
     <p>3. The endpoint to fetch details of Hospital with Hospital Name is : <b>GET</b> >>localhost:3000/api/Hospital/hospital_name</p>
-    <img src="/screenshots/hospital_name.png?raw=true">
+    <img src="/MP1/screenshots/hospital_name.png?raw=true">
 </details>
 <details>
     <summary>Updating Ventilator Details</summary>
@@ -73,7 +73,7 @@
     <p>2. Add the token to the headers with key as Authorization and valuse as *Bearer $token*.</p>
     <p>3. Attach the feilds to bve Updated to the body of the query</p>
     <p>4. The endpoint to Upadte ventilator details : <b>PUT</b> >>localhost:3000/api/Ventilator/vent_id</p>
-    <img src="/screenshots/update_vent_details.png?raw=true">
+    <img src="/MP1/screenshots/update_vent_details.png?raw=true">
 </details>
 <details>
     <summary>Adding new Ventilator</summary>
@@ -81,12 +81,12 @@
     <p>2. Add the token to the headers with key as Authorization and valuse as *Bearer $token*.</p>
     <p>3. Attach the Ventialtor Details to the body of the query</p>
     <p>4. The endpoint to Add new ventilator : <b>POST</b> >>localhost:3000/api/Ventilator</p>
-    <img src="/screenshots/adding_vent.png?raw=true">
+    <img src="/MP1/screenshots/adding_vent.png?raw=true">
 </details>
 <details>
     <summary>Deleteing Ventilator</summary>
     <p>1. Copy the token from the login query result.</p>
     <p>2. Add the token to the headers with key as Authorization and valuse as *Bearer $token*.</p>
     <p>3. The endpoint to Delete ventilator : <b>DELETE</b> >>localhost:3000/api/Ventilator/vent_id</p>
-    <img src="/screenshots/delete_vent.png?raw=true">
+    <img src="/MP1/screenshots/delete_vent.png?raw=true">
 </details>
