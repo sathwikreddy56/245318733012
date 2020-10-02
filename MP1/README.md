@@ -30,7 +30,7 @@
 3. Install NPM packages : ```npm install```
 ## Executing program
 1. Intializing server : 'npm start'
-![Alt text](/screenshots/initializing.png?raw=true "starting the express server")
+![Alt text](/MP1/screenshots/initializing.png?raw=true "starting the express server")
 2. Open postman and send queries
 ## Testing
 <details>
