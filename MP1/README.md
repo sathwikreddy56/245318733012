@@ -84,7 +84,7 @@
     <img src="/MP1/screenshots/adding_vent.png?raw=true">
 </details>
 <details>
-    <summary>Deleteing Ventilator</summary>
+    <summary>Deleting Ventilator</summary>
     <p>1. Copy the token from the login query result.</p>
     <p>2. Add the token to the headers with key as Authorization and valuse as *Bearer $token*.</p>
     <p>3. The endpoint to Delete ventilator : <b>DELETE</b> >>localhost:3000/api/Ventilator/vent_id</p>
