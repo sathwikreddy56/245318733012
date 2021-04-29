@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Update Product</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Inventory Management</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li  class="active"><a href="/addproduct">Add</a></li>
+      <li><a href="/deleteproduct">Delete</a></li>
+	  <li><a herf="/sales">Sales</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<div class='container'>
+
+
+<h2>Update Product</h2>
+<form class='form-group' method='post' action='/update/<%=data.productid %>'>
+
+	<div class='row'>
+		<label class='badge col-sm-1'>Product ID</label>
+		<div class='col-sm-5'>
+			<input type='text' class='form-control' id='productid' name='productid' placeholder='ID' value=<%=data.productid %> >
+		</div>
+	</div>
+	<br>
+	<div class='row'>
+		<label class='badge col-sm-1'>Brand</label>
+		<div class='col-sm-5'>
+			<input type='text' class='form-control' id='brand' name='brand' placeholder='Brand' value=<%=data.brand %>>
+		</div>
+	</div>
+	<br>
+	<div class='row'>
+		<label class='badge col-sm-1'>Category</label>
+		<div class='col-sm-5'>
+			<input type='text' class='form-control' id='category' name='category' placeholder='category' value=<%=data.category %>>
+		</div>
+	</div>
+	<br>
+	<div class='row'>
+		<label class='badge col-sm-1'>Product Name</label>
+		<div class='col-sm-5'>
+			<input type='text' class='form-control' id='productname' name='productname' placeholder='productname' value=<%=data.productname %>>
+		</div>
+	</div>
+	<br>
+	<div class='row'>
+		<label class='badge col-sm-1'>Size</label>
+		<div class='col-sm-5'>
+			<input type='text' class='form-control' id='size' name='size' placeholder='size' value=<%=data.size %>>
+		</div>
+	</div>
+	<br>
+	<div class='row'>
+		<label class='badge col-sm-1'>Quantity</label>
+		<div class='col-sm-5'>
+			<input type='text' class='form-control' id='quantity' name='quantity' placeholder='quantity' value=<%=data.quantity %>>
+		</div>
+	</div>
+	<br>
+	<div class='row'>
+		<label class='badge col-sm-1'>Cost Price</label>
+		<div class='col-sm-5'>
+			<input type='text' class='form-control' id='costprice' name='costprice' placeholder='costprice' value=<%=data.cp %>>
+		</div>
+	</div>
+	<br>
+	<div class='row'>
+		<label class='badge col-sm-1'>Selling Price</label>
+		<div class='col-sm-5'>
+			<input type='text' class='form-control' id='sellingprice' name='sellingprice' placeholder='sellingprice' value=<%=data.sp %>>
+		</div>
+	</div>
+	<br>
+<input type='submit' class="btn btn-primary">
+</form>
+
+
+</div>
+</body>
+</html>

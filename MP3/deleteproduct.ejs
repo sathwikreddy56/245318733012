@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>Delete Product</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Inventory Management</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/addproduct">Add</a></li>
+      <li  class="active"><a href="/deleteproduct">Delete</a></li>
+	  <li><a href="/sales">Sales</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<div class='container'>
+
+<h3>Delete a product by its ID</h3>
+<form method='post' action='/deleteproduct'>
+
+<div class='row'>
+<label class='col-sm-3'>Select a product to delete:</label>
+<div class='col-sm-3'>
+<select name='idlist' id='idlist' class='form-control'>
+<option value="" class='form-control'>None</option>
+</select>
+</div>
+</div>
+<br>
+<div class='row'>
+<label class='col-sm-3'>Or type your product id to delete:</label>
+<div class='col-sm-6'>
+<input type='text' id='productid' name='productid' required class='form-control' value=<%=productid%>>
+</div>
+<br>
+</div>
+<input type='submit' class="btn btn-primary">
+
+
+</form>
+</div>
+</body>
+<script>
+
+fetch('/allproductids').then(response=>{
+	response.text().then(text=>{
+		//console.log(text);
+		var data=JSON.parse(text);
+		var list=document.querySelector('#idlist');
+		for(var d of data){
+			var option=document.createElement('option');
+			option.text=d.productid;
+			list.add(option);
+		}
+	})
+})
+var idlist=document.querySelector('#idlist');
+idlist.addEventListener('change',()=>{
+	var value=idlist.value;
+	console.log(value);
+	var textfield=document.querySelector('#productid');
+	textfield.value=value;
+})
+
+</script>
+</html>
