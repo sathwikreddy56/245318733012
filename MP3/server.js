@@ -1,98 +1,82 @@
-var express=require('express')
-var bodyParser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://127.0.0.1:27017';
-const dbName = 'inventorymanagement';
-var app=express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-var db;
+const express=require('express')   
+const app=express()   
+const bodyParser=require('body-parser')   
+const MongoClient=require('mongodb').MongoClient   
+var db; 
+var s;
 
-MongoClient.connect(url,{useUnifiedTopology:true},(err,client)=>{
-    if (err)console.log(err);
-    db=client.db(dbName);
-    console.log('connected to database');
+MongoClient.connect('mongodb://localhost:27017/Inventory', (err,database) =>{        
+	if(err) return console.log(err)
+	db=database.db('Inventory')     
+	app.listen(5000,() =>{
+		console.log('Listening at port number 5000')
+	})
 })
-app.get('/addproduct',(req,res)=>{
-        res.sendFile(__dirname+'/'+'addproduct.html');
+
+app.set('view engine','ejs')
+app.use(bodyParser.urlencoded({extended:true})) 
+app.use(bodyParser.json())   
+app.use(express.static('public'))  
+
+//homepage
+app.get('/', (req,res)=>{                
+	db.collection('shoes').find().toArray( (err,result)=>{     
+		if(err) return console.log(err)     
+	res.render('homepage.ejs', {data:result})      
+	})
 })
-app.post('/addproduct',(req,res)=>{
-    var productid=req.body.productid;
-    var brand=req.body.brand;
-    var category=req.body.category;
-    var productname=req.body.productname;
-    var size=req.body.size;
-    var quantity=req.body.quantity;
-    var cp=req.body.costprice;
-    var sp=req.body.sellingprice;
-    console.log(productid);
-    db.collection('stock').insertOne({'productid':productid,'brand':brand,'category':category,'productname':productname,
-    'size':size,'quantity':quantity,'cp':cp,'sp':sp});
-    res.redirect('/');
+
+//for add
+app.get('/create', (req,res)=>{     //change
+	res.render('add.ejs')            //change
 })
-app.post('/deleteproduct',(req,res)=>{
-    var productid=req.body.productid;
-    db.collection('stock').deleteOne({'productid':productid});
-    res.redirect('/');
+
+//for update
+app.get('/updatestock', (req,res)=>{			//change
+	res.render('update.ejs')				//change
 })
-app.get('/deleteproduct',(req,res)=>{
-    var productid=req.query.productid;
-    res.render(__dirname+'/'+'deleteproduct.ejs',{productid:productid});
+
+
+//for delete
+app.get('/deleteproduct', (req,res)=>{		//change
+	res.render('delete.ejs')		//change
 })
-app.get('/allproductids',(req,res)=>{
-    db.collection('stock').find().toArray((err,result)=>{
-        res.json(result);
-    })
+
+//post request code-
+app.post('/AddData', (req,res)=>{			
+	db.collection('shoes').save(req.body, (err,result)=>{			
+		if(err) return console.log(err)
+	res.redirect('/')                        
+	})
 })
-app.get('/update/:productid',(req,res)=>{
-    var productid=req.params.productid;
-    db.collection('stock').find({'productid':productid}).toArray((err,result)=>{
-        res.render(__dirname+'/'+'update.ejs',{data:result[0]})
-    })
+
+//post-update stock 
+app.post('/update', (req,res)=>{			
+		db.collection('shoes').find().toArray((err,result)=>{	   			
+			if(err) 
+				return console.log(err)
+			for(var i=0;i<result.length;i++){
+				if(result[i].pid==req.body.id){
+					s=result[i].stock
+					break
+				}
+			}
+			db.collection('shoes').findOneAndUpdate({pid:req.body.id},{
+				$set:{stock: parseInt(s) +parseInt(req.body.stock)}} , {sort:{_id:-1}},
+				(err,result) =>{
+					if(err)
+						return console.log(err)
+					console.log(req.body.id+'stock updated')
+					res.redirect('/')
+				})
+			})	
+		})
+
+//post- delete stock
+app.post('/delete',(req,res)=>{
+	db.collection('shoes').findOneAndDelete({pid:req.body.id}, (err,result)=>{    
+		if(err)
+			return console.log(err)
+		res.redirect('/')
+	})
 })
-app.post('/update/:productid',(req,res)=>{
-    var productid=req.body.productid;
-    var brand=req.body.brand;
-    var category=req.body.category;
-    var productname=req.body.productname;
-    var size=req.body.size;
-    var quantity=req.body.quantity;
-    var cp=req.body.costprice;
-    var sp=req.body.sellingprice;
-    console.log(productid);
-    db.collection('stock').deleteMany({'productid':productid});
-    db.collection('stock').insertOne({'productid':productid,'brand':brand,'category':category,'productname':productname,
-    'size':size,'quantity':quantity,'cp':cp,'sp':sp});
-    res.redirect('/');
-})
-app.get('/',(req,res)=>{
-    res.sendFile(__dirname+'/'+'home.html')
-})
-app.get('/fulldata',(req,res)=>{
-    db.collection('stock').find().toArray((err,result)=>{
-        res.json(result);
-    })
-})
-app.get('/sales',(req,res)=>{
-    res.sendFile(__dirname+'/'+'sales.html');
-})
-app.post('/sales',(req,res)=>{
-    var date=req.body.date;
-    var id=req.body.productid;
-    var unit=req.body.unit;
-    var quantity=req.body.quantity;
-    var rupees=req.body.rupees;
-    db.collection('sales').insertOne({'date':date,'productid':id,'unit':unit,'quantity':quantity,'rupees':rupees});
-    res.redirect('/sales');
-})
-app.get('/salesform',(req,res)=>{
-    res.sendFile(__dirname+'/'+'salesform.html');
-})
-app.get('/allsales',(req,res)=>{
-    db.collection('sales').find().toArray((err,result)=>{
-        res.json(result);
-    })
-})
-app.set('views',__dirname);
-app.set('view engine','ejs');
-app.listen(3000);
