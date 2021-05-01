@@ -1,104 +1,104 @@
 <html lang="en">
 <head>
-    <title>Shoe Store</title>
+    <title>Electronics Store</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="style.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 </head>
-
 <body>
-
-    <div>
-		
-	<!-- Navbar -->
+  <div>
+	<!-- Navbar Top-->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 		<!-- Left navbar links -->
 			<ul class="navbar-nav">
 				<li class="nav-item">
-				<a class="nav-link" data-widget="pushmenu" href="#" role="button"> 
-                                           <i class="fas fa-bars"></i></a>
+				<a class="nav-link" data-widget="pushmenu" href="#" role="button"> <i class="fas fa-bars"></i></a>
 				</li>
 				<li class="nav-item d-none d-sm-inline-block">
 				<a href="/" class="nav-link">Home</a>
 				</li>
 			</ul>
 		</nav>
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-                <a href="#" class="brand-link">
-                  <!--<img src="FFlogo.jpg"-->
-                       <!--alt="Fashion Feet Logo"
-                       class="brand-image img-circle elevation-3">-->
-                  <span class="brand-text font-weight-light">Shoe Store</span>
-                </a> 
-                <!-- Sidebar -->
-                <div class="sidebar">
-                
-                </div>
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                      <li class="nav-item">
-                        <a href="/create" class="nav-link">
-                          <i class="nav-icon far fa-circle text-info"></i>
-                          <p>Add Product</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="/deleteproduct" class="nav-link">
-                          <i class="nav-icon far fa-circle text-info"></i>
-                          <p class="text">Delete Product</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="/updatestock" class="nav-link">
-                          <i class="nav-icon far fa-circle text-info"></i>
-                          <p class="text">Update Stock</p>
-                        </a>
-                      </li>
-                      
-                      
-                    </ul>
-                </nav>
-                <!-- /.sidebar -->
-            </aside>
-            
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="/" class="brand-link">
+          <span class="brand-text font-weight-light">Electronics Store</span>
+        </a> 
+        <!-- Sidebar -->
+        <div class="sidebar">
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <li class="nav-item">
+                <a href="/searchres" class="nav-link">
+                    <i class="nav-icon far fa-circle text-info"></i>
+                    <p class="text">Search Product</p>
+                </a>
+            </li>
+              <li class="nav-item">
+                <a href="/create" class="nav-link">
+                  <i class="nav-icon far fa-circle text-info"></i>
+                  <p>Add Product</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/deleteproduct" class="nav-link">
+                  <i class="nav-icon far fa-circle text-info"></i>
+                  <p class="text">Delete Product</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/updatestock" class="nav-link">
+                <i class="nav-icon far fa-circle text-info"></i>
+                <p class="text">Update Stock</p>
+                </a>
+              </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar -->
+      </aside>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
-                
                 <section class="content-header">
-                    <h1>Shoe Store Inventory Management</h1>
+                    <h1>Electronics Inventory Management</h1>
                 </section>
                 <div class="card">
                     <div class="card-header">
-                        
-                      
-
                       <h4 class="c1">Delete Product</h4>
-    <form action="/delete" method="POST">
-        <label>PRODUCT ID: </label>
-        <input type="text" placeholder="Enter ID" name="id"><br><br>
-        <button id="delete">Delete</button>
-    </form>
-    
-
-
-                
-
-                      
-                
-                <section class="content">
-                    
+                      <form action="/delete" method="POST">
+                          <label>PRODUCT ID: </label>
+                          <input type="text" placeholder="Enter ID" name="id"><br><br>
+                          <button class="btn btn-sm btn-danger" id="delete">Delete</button>
+                      </form>
+                <section class="content">   
                 </section>
             </div>
-            
     </div>
-
-    
+    <script src="./plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="./plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="./dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="./dist/js/demo.js"></script>
 </body>
 </html>

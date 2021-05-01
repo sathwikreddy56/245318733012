@@ -12,7 +12,6 @@ MongoClient.connect('mongodb://localhost:27017/Inventory', (err,database) =>{
 		console.log('Listening at port number 5000')
 	})
 })
-
 app.set('view engine','ejs')
 app.use(bodyParser.urlencoded({extended:true})) 
 app.use(bodyParser.json())   
@@ -25,7 +24,6 @@ app.get('/', (req,res)=>{
 	res.render('homepage.ejs', {data:result})      
 	})
 })
-
 //for add
 app.get('/create', (req,res)=>{     //change
 	res.render('add.ejs')            //change
@@ -36,10 +34,13 @@ app.get('/updatestock', (req,res)=>{			//change
 	res.render('update.ejs')				//change
 })
 
-
 //for delete
 app.get('/deleteproduct', (req,res)=>{		//change
 	res.render('delete.ejs')		//change
+})
+
+app.get('/searchres', (req,res)=>{		//change
+	res.render('search.ejs')		//change
 })
 
 //post request code-
@@ -78,5 +79,30 @@ app.post('/delete',(req,res)=>{
 		if(err)
 			return console.log(err)
 		res.redirect('/')
+	})
+})
+
+//search stock
+app.post('/searchres',(req,res)=>{
+	console.log(req.body)
+	console.log(req.body.id)
+	db.collection('shoes').findOne({pid:req.body.id}).then((result)=>{
+		console.log(result)
+		res.render('searchres.ejs', {data: [result]})  
+	})
+})
+app.post('/searchdelete',(req,res)=>{
+	console.log(req.body)
+	console.log(req.body.id)
+	db.collection('shoes').findOneAndDelete({pid:req.body.id}, (err,result)=>{    
+		if(err)
+			return console.log(err)
+	})
+	db.collection('shoes').findOne({pid:req.body.id}).then((result)=>{
+		console.log(result)
+		if(result)
+			res.render('searchres.ejs', {data: [result]})  
+		else
+			res.redirect('/')
 	})
 })
